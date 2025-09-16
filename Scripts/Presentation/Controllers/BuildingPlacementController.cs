@@ -40,7 +40,6 @@ namespace Presentation.Controllers
         private UIController _uiController;
         private BuildingService _buildingService;
 
-        // Переменные для хранения подписок
         private IDisposable _buildingBuiltDisposable;
         private IDisposable _notificationDisposable;
 
@@ -186,7 +185,6 @@ namespace Presentation.Controllers
             _selectedBuildingType = null;
             _gridCursor.HideCursor();
     
-            // Отменяем выбор, если он был
             _selectedBuildingId = null;
             _uiController.HideBuildingInfo();
         }
@@ -245,4 +243,5 @@ namespace Presentation.Controllers
             }
         }
     }
+
 }
