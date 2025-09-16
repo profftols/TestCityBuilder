@@ -26,7 +26,6 @@ namespace Presentation.Grid
                 });
         }
 
-        // Инициализация сетки при запуске
         private void Start()
         {
             int width = 32;
@@ -61,3 +60,4 @@ namespace Presentation.Grid
     }
 
 }
+
