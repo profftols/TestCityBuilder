@@ -31,7 +31,6 @@ namespace Applications.Buildings
             _buildingPublisher = buildingPublisher;
             _notificationPublisher = notificationPublisher;
 
-            // Загружаем все ScriptableObjects
             _buildingTypes = Resources.LoadAll<BuildingTypeSO>(AssetPath.buildingsTypePath);
         }
 
@@ -63,10 +62,8 @@ namespace Applications.Buildings
                 return;
             }
 
-            // Занимаем клетки на сетке
             await _gridService.OccupyCells(request.Position, buildingType.width, buildingType.height, true);
 
-            // Создаем DTO для нового здания и публикуем событие
             var newBuildingData = new BuildingData
             {
                 Id = System.Guid.NewGuid().ToString(),
@@ -80,4 +77,5 @@ namespace Applications.Buildings
             await _notificationPublisher.PublishAsync(new NotificationEvent("Здание успешно построено!"));
         }
     }
+
 }
