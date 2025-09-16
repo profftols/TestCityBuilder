@@ -14,7 +14,7 @@ namespace Domain.Data
         public GameObject prefab;
         public Sprite icon;
 
-        // Данные об уровнях здания
         public BuildingLevelData[] levels;
     }
+
 }
