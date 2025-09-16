@@ -36,7 +36,6 @@ namespace Applications.SaveLoad
             string json = PlayerPrefs.GetString("GameSave");
             GameSaveData saveData = JsonUtility.FromJson<GameSaveData>(json);
 
-            // Восстанавливаем состояние
             _economyService.SetGold(saveData.Gold);
             _buildingService.LoadBuildings(saveData.Buildings);
 
@@ -44,4 +43,5 @@ namespace Applications.SaveLoad
             await _notificationPublisher.PublishAsync(new NotificationEvent("Игра загружена!"));
         }
     }
+
 }
