@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a1882a27a874dc1bab95b9a3f36a4b7, type: 3}
+  m_Name: Farm
+  m_EditorClassIdentifier: 
+  buildTypeId: 1
+  displayName: Farm
+  width: 4
+  height: 2
+  prefab: {fileID: 188958, guid: 2082f115d38a4a94fabde959cb0bfd45, type: 3}
+  icon: {fileID: 21300000, guid: b39c6ee4abd3ca94fbe5ba5391dad3fb, type: 3}
+  levels:
+  - Level: 1
+    GoldCost: 20
+    IncomePerSecond: 5
+  - Level: 2
+    GoldCost: 40
+    IncomePerSecond: 10
+  - Level: 3
+    GoldCost: 80
+    IncomePerSecond: 15

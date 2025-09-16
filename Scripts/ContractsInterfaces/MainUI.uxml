@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Scripts/ContractsInterfaces/MainUI.uss?fileID=7433441132597879392&amp;guid=28149211ae498124985dd7f3af1024aa&amp;type=3#MainUI" />
+    <ui:VisualElement name="header-panel" style="height: 115px;">
+        <ui:Label name="gold-label" text="Gold: 0" style="-unity-background-scale-mode: stretch-to-fill; translate: 23px 16px; width: 131px; font-size: 35px; text-shadow: 0 0 0 rgba(0, 0, 0, 0);" />
+    </ui:VisualElement>
+    <ui:VisualElement name="building-info-panel" style="flex-grow: 1; height: 335px; width: 1028px;">
+        <ui:Button text="Load" name="load-button" emoji-fallback-support="true" style="width: 68px; translate: 953px 58px;" />
+        <ui:Button text="Save" name="save-button" style="width: 75px; translate: 876px 15px;" />
+        <ui:Button text="Upgrade" name="upgrade-button" style="width: 212px; translate: 807px 195px;" />
+        <ui:Button text="Delete" name="delete-button" style="width: 212px; translate: 806px 196px;" />
+        <ui:Button text="Move" name="move-button" emoji-fallback-support="true" style="width: 212px; translate: 807px 198px;" />
+        <ui:Label text="Title" name="building-title-label" style="translate: 0 -62px; width: 101px; height: 51px; font-size: 27px; -unity-font-style: bold;" />
+        <ui:Label text="Level" name="building-level-label" style="translate: 0 -65px; width: 102px; height: 48px; -unity-font-style: bold; font-size: 26px;" />
+        <ui:Label text="Cost" name="upgrade-cost-label" parse-escape-sequences="false" style="translate: 0 -75px; width: 114px; height: 57px; -unity-font-style: bold; font-size: 33px;" />
+    </ui:VisualElement>
+    <ui:VisualElement name="notification-container" class="notification-container" style="height: 144px; width: 942px; transform-origin: center; translate: -461px -105px;">
+        <ui:Label name="notification-label" class="notification-label" style="height: 110px;" />
+    </ui:VisualElement>
+</ui:UXML>

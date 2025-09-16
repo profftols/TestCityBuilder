@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a1882a27a874dc1bab95b9a3f36a4b7, type: 3}
+  m_Name: House
+  m_EditorClassIdentifier: 
+  buildTypeId: 0
+  displayName: House
+  width: 4
+  height: 4
+  prefab: {fileID: 103614, guid: 1e132733b84047940b6a9043814d6ee2, type: 3}
+  icon: {fileID: 21300000, guid: b3e6120c8a4fbc54f9cb33a8d7a5e81b, type: 3}
+  levels:
+  - Level: 1
+    GoldCost: 40
+    IncomePerSecond: 10
+  - Level: 2
+    GoldCost: 80
+    IncomePerSecond: 15
+  - Level: 3
+    GoldCost: 160
+    IncomePerSecond: 20
