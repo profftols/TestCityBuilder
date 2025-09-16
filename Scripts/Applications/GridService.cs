@@ -16,7 +16,7 @@ namespace Applications
         public GridService(IAsyncPublisher<CellStateChanged> publisher)
         {
             _publisher = publisher;
-            _width = 32; // Например, 10x10
+            _width = 32; 
             _height = 32;
             _grid = new bool[_width, _height];
         }
@@ -71,3 +71,4 @@ namespace Applications
         }
     }
 }
+
