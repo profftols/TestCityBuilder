@@ -8,25 +8,20 @@ namespace Presentation.Grid
 {
     public class GridView : MonoBehaviour
     {
-        // Префаб одной клетки сетки.
         [SerializeField] private GameObject cellPrefab;
 
-        // Ссылки на материалы для разных состояний клетки.
         [SerializeField] private Material freeCellMaterial;
         [SerializeField] private Material occupiedCellMaterial;
 
         private GameObject[,] _cells;
         private IDisposable _cellStateDisposable;
 
-        // Внедрение зависимостей с помощью VContainer
         [Inject]
         public void Construct(IAsyncSubscriber<CellStateChanged> cellStateSubscriber)
         {
-            // Подписываемся на события изменения состояния клетки.
             _cellStateDisposable = cellStateSubscriber.Subscribe(
                 async (cellState, cancellationToken) =>
                 {
-                    // Обновляем визуальное состояние клетки в главном потоке.
                     UpdateCellVisual(cellState.Position, cellState.IsOccupied);
                 });
         }
@@ -34,7 +29,6 @@ namespace Presentation.Grid
         // Инициализация сетки при запуске
         private void Start()
         {
-            // Для простоты жестко зададим размеры, можно брать из GridService.
             int width = 32;
             int height = 32;
 
@@ -45,13 +39,11 @@ namespace Presentation.Grid
                 {
                     var cell = Instantiate(cellPrefab, new Vector3(x, 0, y), Quaternion.identity, transform);
                     _cells[x, y] = cell;
-                    // Изначально все клетки свободны
                     _cells[x, y].GetComponent<Renderer>().material = freeCellMaterial;
                 }
             }
         }
 
-        // Отписываемся от событий при уничтожении объекта
         private void OnDestroy()
         {
             _cellStateDisposable?.Dispose();
@@ -67,4 +59,5 @@ namespace Presentation.Grid
             }
         }
     }
+
 }
