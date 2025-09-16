@@ -23,7 +23,6 @@ namespace Applications.Services
             _economyPublisher = economyPublisher;
             _buildingService = buildingService;
 
-            // Запускаем асинхронный цикл дохода
             StartIncomeLoop().Forget();
         }
 
@@ -62,7 +61,6 @@ namespace Applications.Services
 
         public void Dispose()
         {
-            // Отменяем токен, чтобы остановить цикл
             _cts.Cancel();
         }
         
@@ -72,4 +70,5 @@ namespace Applications.Services
             _economyPublisher.PublishAsync(new EconomyStateChanged(_gold.Value)).Forget();
         }
     }
+
 }
