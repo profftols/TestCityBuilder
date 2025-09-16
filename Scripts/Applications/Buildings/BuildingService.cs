@@ -29,7 +29,6 @@ namespace Applications.Buildings
         
             _buildingTypes = Resources.LoadAll<BuildingTypeSO>(AssetPath.buildingsTypePath);
         
-            // Просто подписываемся и сохраняем IDisposable
             _buildingBuiltDisposable = _buildingBuiltSubscriber.Subscribe(
                 async (buildingBuilt, cancellationToken) => await OnBuildingBuilt(buildingBuilt));
             
@@ -52,7 +51,7 @@ namespace Applications.Buildings
                 
                 if (type != null)
                 {
-                    BuildingLevelData levelData = type.levels[building.Level - 1]; // Уровни начинаются с 1
+                    BuildingLevelData levelData = type.levels[building.Level - 1];
                     totalIncome += levelData.IncomePerSecond;
                 }
             }
@@ -60,7 +59,6 @@ namespace Applications.Buildings
             return totalIncome;
         }
 
-        // Реализация IDisposable для корректной очистки
         public void Dispose()
         {
             _buildingBuiltDisposable?.Dispose();
@@ -109,4 +107,5 @@ namespace Applications.Buildings
             return _buildingDictionary.TryGetValue(buildingId, out BuildingData data) ? data : null;
         }
     }
+
 }
