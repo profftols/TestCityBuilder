@@ -61,13 +61,12 @@ namespace Applications.Buildings
             return;
         }
 
-        // Обновляем уровень в модели данных
         buildingData.Level = nextLevel;
         _buildingService.UpdateBuildingData(buildingData);
 
-        // Публикуем событие об улучшении
         await _publisher.PublishAsync(new BuildingUpgraded(buildingData.Id, nextLevel));
         await _notificationPublisher.PublishAsync(new NotificationEvent("Здание успешно улучшено!"));
     }
     }
+
 }
