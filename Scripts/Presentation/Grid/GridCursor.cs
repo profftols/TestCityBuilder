@@ -27,17 +27,16 @@ namespace Presentation.Grid
         private void Awake()
         {
             _mainCamera = Camera.main;
-            UpdateCursorVisual(false); // Изначально скрываем курсор
+            UpdateCursorVisual(false);
         }
 
         public void UpdateCursor(BuildingTypeSO buildingType)
         {
-            // Устанавливаем размеры для проверки
             _currentWidth = buildingType.width;
             _currentHeight = buildingType.height;
 
-            UpdateCursorVisual(true); // Показываем курсор
-            Update(); // Обновляем позицию сразу после выбора здания
+            UpdateCursorVisual(true);
+            Update();
         }
 
         public void HideCursor()
@@ -57,18 +56,16 @@ namespace Presentation.Grid
             Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                // Определяем позицию на сетке
                 int x = Mathf.RoundToInt(hit.point.x);
                 int y = Mathf.RoundToInt(hit.point.z);
                 CurrentPosition = new Vector2Int(x, y);
 
-                // Перемещаем визуальный объект курсора
                 transform.position = new Vector3(x, 0.01f, y);
 
-                // Проверяем, можно ли разместить здание
                 bool canPlace = _gridService.CanPlace(CurrentPosition, _currentWidth, _currentHeight);
                 cursorRenderer.material = canPlace ? canPlaceMaterial : cannotPlaceMaterial;
             }
         }
     }
+
 }
