@@ -48,29 +48,24 @@ namespace Applications.Buildings
                 return;
             }
 
-            // Освобождаем старые клетки, чтобы проверить новые
             await _gridService.OccupyCells(buildingData.Position, buildingType.width, buildingType.height, false);
 
-            // Проверяем, можно ли разместить на новой позиции
             if (!_gridService.CanPlace(newPosition, buildingType.width, buildingType.height))
             {
-                // Нельзя разместить, возвращаем старые клетки
                 await _gridService.OccupyCells(buildingData.Position, buildingType.width, buildingType.height, true);
                 await _notificationPublisher.PublishAsync(
                     new NotificationEvent("Невозможно переместить сюда. Клетки заняты."));
                 return;
             }
 
-            // Занимаем новые клетки
             await _gridService.OccupyCells(newPosition, buildingType.width, buildingType.height, true);
 
-            // Обновляем позицию в модели данных
             buildingData.Position = newPosition;
             _buildingService.UpdateBuildingData(buildingData);
 
-            // Публикуем событие
             await _publisher.PublishAsync(new BuildingMoved(buildingData.Id, newPosition));
             await _notificationPublisher.PublishAsync(new NotificationEvent("Здание перемещено."));
         }
     }
+
 }
