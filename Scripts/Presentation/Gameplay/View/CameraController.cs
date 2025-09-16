@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 
 public class CameraController : MonoBehaviour
 {
-    // Ссылки на Input Actions
     private PlayerControls playerControls;
     private InputAction moveAction;
     private InputAction lookAction;
@@ -37,15 +36,12 @@ public class CameraController : MonoBehaviour
 
     private void Awake()
     {
-        // Создаем новый экземпляр PlayerControls
         playerControls = new PlayerControls();
         
-        // Получаем ссылки на Actions
         moveAction = playerControls.Camera.Move;
         lookAction = playerControls.Camera.Look;
         zoomAction = playerControls.Camera.Zoom;
 
-        // Подписываемся на события
         lookAction.started += OnLookStarted;
         lookAction.performed += OnLookPerformed;
         lookAction.canceled += OnLookCanceled;
@@ -57,7 +53,6 @@ public class CameraController : MonoBehaviour
         selectBuilding2Action = playerControls.Camera.SelectBuilding2;
         selectBuilding3Action = playerControls.Camera.SelectBuilding3;
 
-        // Подписываемся на события
         rotateAction.performed += OnRotate;
         deleteAction.performed += OnDelete;
         selectBuilding1Action.performed += OnSelectBuilding1;
@@ -67,23 +62,19 @@ public class CameraController : MonoBehaviour
 
     private void OnEnable()
     {
-        // Включаем Action Map
         playerControls.Camera.Enable();
     }
 
     private void OnDisable()
     {
-        // Отключаем Action Map
         playerControls.Camera.Disable();
     }
 
     private void OnLookStarted(InputAction.CallbackContext context)
     {
-        // Проверяем, нажата ли правая кнопка мыши
         if (Mouse.current.rightButton.isPressed)
         {
             isDragging = true;
-            // Сохраняем начальную позицию мыши для drag-n-drop
             dragStartPos = Mouse.current.position.ReadValue();
         }
     }
@@ -112,12 +103,10 @@ public class CameraController : MonoBehaviour
 
     private void HandleMovement()
     {
-        // Движение WASD
         Vector2 input = moveAction.ReadValue<Vector2>();
         Vector3 direction = new Vector3(input.x, 0, input.y).normalized;
         transform.Translate(direction * movementSpeed * Time.deltaTime, Space.World);
 
-        // Перемещение при наведении на край экрана (опционально)
         Vector3 mousePosition = Mouse.current.position.ReadValue();
         if (mousePosition.x < panBorderThickness)
         {
@@ -136,7 +125,6 @@ public class CameraController : MonoBehaviour
             transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime, Space.World);
         }
         
-        // Ограничение движения
         Vector3 clampedPosition = transform.position;
         clampedPosition.x = Mathf.Clamp(clampedPosition.x, moveBoundsX.x, moveBoundsX.y);
         clampedPosition.z = Mathf.Clamp(clampedPosition.z, moveBoundsZ.x, moveBoundsZ.y);
@@ -160,13 +148,10 @@ public class CameraController : MonoBehaviour
 
     private void HandleLook()
     {
-        // Вращение камерой при зажатой правой кнопке мыши
         if (isDragging)
         {
             Vector2 delta = Mouse.current.delta.ReadValue();
             transform.Rotate(Vector3.up, delta.x * rotationSpeed * Time.deltaTime, Space.World);
-            // Если нужно вращение по оси X (наклон камеры)
-            // transform.Rotate(Vector3.left, delta.y * rotationSpeed * Time.deltaTime, Space.Self);
         }
     }
     
@@ -200,3 +185,4 @@ public class CameraController : MonoBehaviour
         // Здесь должна быть логика выбора префаба здания 3
     }
 }
+
