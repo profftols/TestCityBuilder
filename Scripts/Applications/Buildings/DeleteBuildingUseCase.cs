@@ -40,19 +40,17 @@ namespace Applications.Buildings
                 return;
             }
 
-            // Освобождаем клетки на сетке
             BuildingTypeSO buildingType = _buildingService.GetBuildingType(buildingData.Type);
             if (buildingType != null)
             {
                 await _gridService.OccupyCells(buildingData.Position, buildingType.width, buildingType.height, false);
             }
 
-            // Удаляем здание из списка
             _buildingService.RemoveBuilding(buildingData.Id);
 
-            // Публикуем событие об удалении
             await _publisher.PublishAsync(new BuildingDeleted(buildingData.Id));
             await _notificationPublisher.PublishAsync(new NotificationEvent("Здание удалено."));
         }
     }
+
 }
